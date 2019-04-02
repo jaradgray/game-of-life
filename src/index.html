@@ -4,14 +4,52 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conway's Game of Life - p5.js</title>
-    <style> body {padding: 0; margin: 0;} </style>
+    <link rel="stylesheet" href="style.css" />
     <script src="p5/p5.js"></script>
     <script src="p5/addons/p5.dom.js"></script>
     <script src="sketch.js"></script>
     <script src="cell.js"></script>
   </head>
   <body>
-    <h1>Heading 1</h1>
-    <p>Instructions here</p>
+    <div class="container">
+        <header>
+            <h1>Conway's Game of Life</h1>
+          </header>
+          <section>
+            <p><a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">Conway's Game of Life</a> is a cellular automaton devised by the British mathematician John Horton Conway in 1970.</p>
+            <p>The game is represented by a grid of cells, each of which can be either "alive" or "dead". The grid is given an initial state and updates at a fixed rate. The next generation of the grid is determined by assigning new values to each cell based on the states of each cell's surrounding cells (its "neighbors").</p>
+            <ul>
+              <li>Any live cell with fewer than two live neighbors dies, as if by underpopulation.</li>
+              <li>Any live cell with two or three live neighbors lives on to the next generation.</li>
+              <li>Any live cell with more than three live neighbors dies, as if by overpopulation.</li>
+              <li>Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.</li>
+            </ul>
+            <p>In this implementation, you can set up the initial grid, start and stop the progression of time at any point, and interact with the grid while it's running.</p>
+      
+            <h2>Instructions</h2>
+            <ul>
+              <li>Set up the initial state of the grid by <strong>left-</strong> or <strong>right-clicking</strong> in the grid below, or clicking the <strong>"Randomize"</strong> button</li>
+              <ul>
+                <li>Left-click to mark cell as "alive"</li>
+                <li>Right-click to mark cell as "dead"</li>
+              </ul>
+              <li>Press the <strong>"Start"</strong> button to begin the simulation</li>
+              <ul>
+                <li>Press the <strong>"Stop"</strong> button to pause the simulation at any time</li>
+              </ul>
+              <li>Press the <strong>"Clear"</strong> button to mark all cells as "dead"</li>
+            </ul>
+
+            <div>
+              <a class="btn btn-start">Start</a>
+              <a class="btn btn-randomize">Randomize</a>
+              <abutton class="btn btn-clear">Clear</a>
+            </div>
+
+            <div class="canvas-container">
+              <!-- sketch.js places canvas here -->
+            </div>
+          </section>
+    </div>
   </body>
 </html>

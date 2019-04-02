@@ -4,6 +4,8 @@
 
 const TICK_LENGTH = 100;
 const CELL_SIZE = 20;
+const CANVAS_WIDTH = 960;
+const CANVAS_HEIGHT = 800;
 
 let startButton, randomizeButton, clearButton;
 
@@ -14,16 +16,16 @@ let playing = false;
 let lastTick;
 
 function setup() {
-	startButton = createButton("Start");
-	randomizeButton = createButton("Randomize");
-	clearButton = createButton("Clear");
+	startButton = document.getElementsByClassName("btn-start")[0];
+	randomizeButton = document.getElementsByClassName("btn-randomize")[0];
+	clearButton = document.getElementsByClassName("btn-clear")[0];
 
-	startButton.mousePressed(startButton_Click);
-	randomizeButton.mousePressed(randomizeButton_Click);
-	clearButton.mousePressed(clearButton_Click);
+	startButton.addEventListener('click', startButton_Click);
+	randomizeButton.addEventListener("click", randomizeButton_Click);
+	clearButton.addEventListener("click", clearButton_Click);
 
-	numRows = floor(windowHeight / CELL_SIZE);
-	numCols = floor(windowWidth / CELL_SIZE);
+	numRows = floor(windowHeight * 0.8 / CELL_SIZE);
+	numCols = floor(CANVAS_WIDTH / CELL_SIZE);
 
 	for (let i = 0; i < numCols; i++) {
 		let col = [];
@@ -34,7 +36,8 @@ function setup() {
 		cells.push(col);
 	}
 
-	createCanvas(numCols * CELL_SIZE, numRows * CELL_SIZE);
+	let canvas = createCanvas(numCols * CELL_SIZE, numRows * CELL_SIZE);
+	document.getElementsByClassName("canvas-container")[0].appendChild(canvas.elt);
 	lastTick = millis();
 }//end setup()
 
@@ -42,7 +45,7 @@ function draw() {
 	let curTime = millis();
 	let doTick = (curTime - lastTick >= TICK_LENGTH);
 	if (doTick) lastTick = curTime;
-	background(51);
+	background(187, 173, 160);
 
 	newState = copyCellsArray(cells); // clone cells, so changes won't affect logic this frame
 
@@ -83,12 +86,15 @@ function draw() {
 	cells = copyCellsArray(newState);
 }//end draw()
 
-function startButton_Click() {
+function startButton_Click(event) {
+	let btn = event.target;
 	if (playing) {
-		startButton.html("Start");
+		btn.innerHTML = "Start";
+		btn.className = "btn btn-start";
 	}
 	else {
-		startButton.html("Stop");
+		btn.innerHTML = "Stop";
+		btn.className = "btn btn-stop";		
 	}
 	playing = !playing;
 }
